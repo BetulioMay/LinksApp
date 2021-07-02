@@ -4,7 +4,7 @@ const router = express.Router();
 const pool = require('../database'); // Reference to the database
 
 router.get('/add', (req, res) => {
-	res.render('./links/add');
+	res.render('links/add');
 });
 
 router.post('/add', async (req,res) => {
@@ -15,7 +15,14 @@ router.post('/add', async (req,res) => {
 		description
 	};
 	await pool.query('INSERT INTO links set ?', [newLink]);
-	res.send("Received!");
+	// res.send("Received!");
+	res.redirect('/links');
+});
+
+router.get('/', async (req, res) => {
+	const links = await pool.query('SELECT * FROM links');
+
+	res.render('links/list', {links});
 });
 
 module.exports = router;
