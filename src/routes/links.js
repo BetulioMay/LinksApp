@@ -5,7 +5,7 @@ const pool = require('../database'); // Reference to the database
 const { isLoggedIn } = require('../lib/auth');
 
 router.get('/', isLoggedIn, async (req, res) => {
-	const links = await pool.query('SELECT * FROM links');
+	const links = await pool.query('SELECT * FROM links WHERE user_id = ?', [req.user.id]);
 
 	res.render('links/list', {links});
 });
@@ -16,10 +16,12 @@ router.get('/add', isLoggedIn, (req, res) => {
 
 router.post('/add', isLoggedIn, async (req,res) => {
 	const { title, url, description } = req.body;
+	console.log(req.body);
 	const newLink = {
 		title,
 		url,
-		description
+		description,
+		user_id : req.user.id
 	};
 	await pool.query('INSERT INTO links SET ?', [newLink]);
 	// res.send("Received!");
