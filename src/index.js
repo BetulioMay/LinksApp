@@ -11,7 +11,6 @@ const { database } = require('./keys');
 
 // Initializations
 const app = express();
-require('./lib/passport');
 
 // Settings
 app.set('port', process.env.PORT || 8080);
@@ -42,6 +41,7 @@ app.use(passport.session());
 // Global Variables
 app.use((req, res, next) => {
 	app.locals.success = req.flash('success');
+	app.locals.errorLogin = req.flash('errorLogin');
 	next();
 })
 
