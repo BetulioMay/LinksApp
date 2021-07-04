@@ -10,8 +10,6 @@ passport.use('local.signin', new LocalStrategy({
 	passReqToCallback : true
 }, async (req, username, password, done) => {
 	
-	console.log(req.body);
-	
 	const rows = await pool.query('SELECT * FROM users WHERE username = ?', [username]);
 
 	if(rows.length > 0) {
@@ -19,7 +17,7 @@ passport.use('local.signin', new LocalStrategy({
 		const validPassword = await helpers.matchPassword(password, user.password);
 
 		if(validPassword) {
-			done(null,user, req.flash('success', 'Welcome! ' + user.username));
+			done(null,user, req.flash('success', 'Welcome! ' + user.fullname));
 		} else {
 			done(null, false, req.flash('errorLogin', 'Incorrect password.'));
 		}
