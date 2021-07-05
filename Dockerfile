@@ -1,12 +1,12 @@
-FROM node:latest
+FROM node:10.19.0
 
 WORKDIR /app
 
-COPY ../package*.json ./
+COPY package*.json ./
 
 RUN npm install
 
-COPY ../ .
+COPY . .
 
 ENV PORT=8080
 
