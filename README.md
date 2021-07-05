@@ -1,5 +1,5 @@
 # LinksApp
-Simple web app to save your favorite links to enhance my web development skills.
+Simple web app to save your favorite links to enhance my backend development skills.
 
 ### Resources
 - SQL Tutorial by W3Schools: https://www.w3schools.com/sql/
