@@ -4,6 +4,7 @@
   "description": "Nice JS app to save your favorite links",
   "main": "index.js",
   "scripts": {
+    "start" : "node src",
     "dev" : "nodemon src"
   },
   "author": "Cesar Mayora (Fazt Web)",
